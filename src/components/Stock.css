@@ -1,74 +1,376 @@
+/* General Body and Container Styles */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Times New Roman', sans-serif;
-  background: linear-gradient(135deg, #000, #007a5e);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d0d0d;
+    color: #c0c0c0;
 }
 
 .stock-container {
-  text-align: center;
-  color: #00ff6c;
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.stock-title {
-  font-size: 36px;
-  margin-bottom: 20px;
+main {
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.scroll-container {
-  overflow-x: auto;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+/* Dashboard Header & Navigation */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: #000;
+    border-bottom: 2px solid #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.card-grid {
-  display: flex;
-  gap: 30px;
-  padding: 0 20px;
+.audi-logo {
+    height: 35px;
 }
 
-.card {
-  perspective: 1000px;
-  flex-shrink: 0; /* Prevents cards from shrinking when scrolling */
+.dashboard-nav {
+    display: flex;
+    gap: 30px;
 }
 
-.card-inner {
-  width: 200px;
-  height: 300px;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
+.nav-link, .dropbtn {
+    color: #c0c0c0;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-.card:hover .card-inner {
-  transform: rotateY(180deg);
+.nav-link:hover, .dropbtn:hover {
+    color: #fff;
 }
 
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
 
-.card-front {
-  background-color: #007a5e;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
 }
 
-.card-back {
-  background-color: #00ff6c;
-  transform: rotateY(180deg);
-  padding: 20px;
+.dropdown-content a {
+    color: #c0c0c0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.favorite-button, .login-button {
+    background-color: #1a1a1a;
+    color: #c0c0c0;
+    border: 1px solid #444;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.favorite-button:hover {
+    background-color: #333;
+    border-color: #c00;
+}
+
+.login-button {
+    background-color: #c00;
+    border-color: #c00;
+    color: #fff;
+}
+
+.login-button:hover {
+    background-color: #e00;
+    border-color: #e00;
+}
+
+/* Home Page Sections */
+section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 600px;
+    background: url('https://images.pexels.com/photos/17094040/pexels-photo-17094040/free-photo-of-man-in-white-dress-shirt-sitting-in-an-audi-r8-in-showroom.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #c00;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background-color: #e00;
+}
+
+/* Featured Models */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.model-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-10px);
+}
+
+.model-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.model-card h3 {
+    margin: 20px 0 10px;
+    color: #fff;
+}
+
+.model-card p {
+    color: #c0c0c0;
+}
+
+.customize-button {
+    background-color: #c00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.customize-button:hover {
+    background-color: #e00;
+}
+
+/* Customization Section */
+.options-grid {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.option-item span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.option-item p {
+    font-size: 1.2rem;
+}
+
+/* Agent Section */
+.agent-section {
+    text-align: center;
+}
+
+.agent-card {
+    display: inline-block;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.agent-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #c00;
+    margin-bottom: 15px;
+}
+
+.agent-info h3 {
+    color: #fff;
+    margin: 0;
+}
+
+.agent-info p {
+    margin: 5px 0;
+}
+
+/* Payments Section */
+.payments-section {
+    text-align: center;
+}
+
+.payment-logos img {
+    height: 40px;
+    margin: 0 15px;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: filter 0.3s, opacity 0.3s;
+}
+
+.payment-logos img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    text-align: center;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+blockquote {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-left: 5px solid #c00;
+    border-radius: 5px;
+    max-width: 400px;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+/* Gallery Section */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer CTA */
+.footer-cta {
+    background-color: #1a1a1a;
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 2px solid #333;
+}
+
+.footer-cta p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #c0c0c0;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #fff;
 }
